@@ -7,8 +7,8 @@ void setup() {
   // ONLY NEEDED FOR BONUS setupPOGL(); // setup our hack to ProcesingOpenGL to let us modify the projection matrix manually
 
    // TODO: your setup code
-   columns = (int)random(15, 35);
-   rows = (int)random(5, 15);
+   columns = (int)random(35, 60);
+   rows = (int)random(8, 15);
   
   // WARNING: use loadImage to load any textures in setup or after. If you do it globally / statically processing complains.
   //  - just make a .setup or .init function on your world, player, etc., that loads the textures, and call those from here.
@@ -25,11 +25,15 @@ void draw() {
   //aligned perspectives based on simple cube drawing
   if (!orthoMode) {
     frustum(-1, 1, -1, 1, 2, 8);
-    translate(0,0,-5);
+    //translate(0,0,-5);
   } else {
-    ortho(-1, 1, -1, 1, -1, 1);
-    scale(0.5);
+    ortho(-1, 1, -1, 1, 2, 8);
+    //scale(0.5);
   }
+  
+    translate(0,0,-3.1);
+    scale(0.5);
+    drawCube();
 
   //testing projections
   stroke(255,255,255);
@@ -40,7 +44,7 @@ void draw() {
   scale(.1);
   //drawCube();
   //drawPlane(rows, 14, MAX_HEIGHT);
-  drawPlane(rows, columns, MAX_HEIGHT);
+  //drawPlane(rows, columns, MAX_HEIGHT);
   
   
 }

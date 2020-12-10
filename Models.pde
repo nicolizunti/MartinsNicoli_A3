@@ -46,25 +46,17 @@ void drawCube() {
 }
 
 void drawPlane(int numRows, int numColumns, int maxHeight){
-  
-  for(int planeWidth = 0; planeWidth < numColumns; planeWidth++){
-    drawCube();
-    translate(2,0,0);
+  //drawing column
+  for(int planeDepth = 0; planeDepth < numRows; planeDepth++){
+    pushMatrix();
+    translate(0,0,planeDepth*2*(-1));
+    //drawing row
+    for(int planeWidth = 0; planeWidth < numColumns; planeWidth++){
+      pushMatrix();
+      drawCube();
+      popMatrix();
+      translate(2,0,0);
+    }
+    popMatrix();
   }
-  
-  /*drawCube();
-  translate(2,0,0);
-  drawCube();
-  translate(2,0,0);
-  drawCube();
-  translate(2,0,0);
-  drawCube();
-  translate(-6,0,-2);
-  drawCube();
-  translate(2,0,0);
-  drawCube();
-  translate(2,0,0);
-  drawCube();
-  translate(2,0,0);
-  drawCube();*/
 }
