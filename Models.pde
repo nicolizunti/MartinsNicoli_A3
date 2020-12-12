@@ -1,10 +1,14 @@
 final int MAX_HEIGHT = 5;
 int rows, columns;
-//Set<int []> obstacles;
 int[][] obstacles;
+color[][] faceColor;
+color[][] topColor;
 float obstacleRate = 0.05;
 
-void drawCube(int CubeHeight) {
+void drawCube(int CubeHeight, int row, int column) {
+  noStroke();
+  //front
+  fill(faceColor[row][column]); 
   beginShape(QUAD);
   vertex(-1,-2*CubeHeight,1);
   vertex(-1,0,1);
@@ -12,6 +16,8 @@ void drawCube(int CubeHeight) {
   vertex(1,-2*CubeHeight,1);
   endShape();
 
+  //right
+  fill(faceColor[row][column]); 
   beginShape(QUAD);
   vertex(1,-2*CubeHeight,1);
   vertex(1,-2*CubeHeight,-1);
@@ -19,13 +25,16 @@ void drawCube(int CubeHeight) {
   vertex(1,0,1);
   endShape();
 
+  //fill(0,0,255);
   beginShape(QUAD);
   vertex(1,-2*CubeHeight,-1);
   vertex(-1,-2*CubeHeight,-1);
   vertex(-1,0,-1);
   vertex(1,0,-1);
   endShape();
-
+  
+  //left
+  fill(faceColor[row][column]); 
   beginShape(QUAD);
   vertex(-1,-2*CubeHeight,-1);
   vertex(-1,-2*CubeHeight,1);
@@ -33,6 +42,7 @@ void drawCube(int CubeHeight) {
   vertex(-1,0,-1);
   endShape();
 
+  //fill(255,0,0);
   beginShape(QUAD);
   vertex(-1,0,1);
   vertex(1,0,1);
@@ -40,6 +50,8 @@ void drawCube(int CubeHeight) {
   vertex(-1,0,-1);
   endShape();
 
+  //top
+  fill(topColor[row][column]); 
   beginShape(QUAD);
   vertex(1,-2*CubeHeight,1);
   vertex(-1,-2*CubeHeight,1);
@@ -56,7 +68,7 @@ void drawPlane(int numRows, int numColumns, int maxHeight){
     //drawing row
     for(int planeWidth = 0; planeWidth < numColumns; planeWidth++){
       pushMatrix();
-      drawCube(obstacles[planeDepth][planeWidth]);
+      drawCube(obstacles[planeDepth][planeWidth], planeDepth, planeWidth);
       popMatrix();
       translate(2,0,0);
     }
@@ -82,23 +94,12 @@ int[][] obstaclesSetup(){
   return result;
 }
 
-/*
-Set<int[]> obstaclesSetup(){
-  
-  Set<int[]> result = new HashSet<int[]>();
-  int qntObstacles = (int)(columns*rows*obstacleRate);
-  int[] obstacle = new int[3];  
-  
-  while(result.size() < qntObstacles){
-    obstacle[0] = (int)random(0,rows);
-    obstacle[1] = (int)random(0, columns);
-    obstacle[2] = 0;
-    result.add(obstacle);
+color [][] randomColors(){
+  color [][] result = new color [rows][columns];
+  for(int iRow = 0; iRow < rows; iRow++){
+    for(int iColumn = 0; iColumn < columns; iColumn++){
+      result[iRow][iColumn] = color(random(0,255)/255,random(0,255)/255, random(0,255)/255);
+    }
   }
-  
-  for(int[] obst : result){
-    obst[2] = (int)random(1, MAX_HEIGHT);
-  }
-  
   return result;
-};*/
+}
