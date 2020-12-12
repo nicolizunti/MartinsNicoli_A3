@@ -25,6 +25,7 @@ void keyPressed()
   if (key == KEY_VIEW)
   {
     orthoMode = !orthoMode;
+    System.out.println("OrthoMode: "+ orthoMode);
   }
     
   /*if (key == KEY_ROTATE_RIGHT)

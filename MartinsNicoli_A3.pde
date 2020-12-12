@@ -1,3 +1,5 @@
+import java.util.*;
+
 void setup() {
   size(1200, 1200, P3D);
   //size(640, 640,P3D);
@@ -9,6 +11,8 @@ void setup() {
    // TODO: your setup code
    columns = (int)random(35, 60);
    rows = (int)random(8, 15);
+   
+   obstacles = obstaclesSetup(); //new int[rows][columns];
   
   // WARNING: use loadImage to load any textures in setup or after. If you do it globally / statically processing complains.
   //  - just make a .setup or .init function on your world, player, etc., that loads the textures, and call those from here.
@@ -33,7 +37,7 @@ void draw() {
   
     translate(0,0,-3.1);
     scale(0.5);
-    drawCube();
+    //drawCube(1);
 
   //testing projections
   stroke(255,255,255);
@@ -42,9 +46,9 @@ void draw() {
   //translate(-1,1,0);
   translate(-1.9,1.5,0);
   scale(.1);
-  //drawCube();
+  //drawCube(1);
   //drawPlane(rows, 14, MAX_HEIGHT);
-  //drawPlane(rows, columns, MAX_HEIGHT);
+  drawPlane(rows, columns, MAX_HEIGHT);
   
   
 }
